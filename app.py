@@ -1,5 +1,11 @@
 import streamlit as st
+from agent import Agent
 
-query = st.text_area(label="Input your query")
+client = Agent()
 
-st.write(f"Your query is {query}")
+with st.form("form"):
+    query = st.text_input(label="**Input your query**")
+    submit = st.form_submit_button("Process")
+
+if submit:
+    st.write(client.run(input=query))
